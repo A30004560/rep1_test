@@ -7,11 +7,11 @@ def job_j(user,path_input,path_output):
 
     t_preliminary_0 = time.time()
     # Set user.
-    #user='A30004560'
+  
     # Create engine.
     engine = create_engine('hana://{user}@hananode1:30015'.format(user=user))
     
-    #path_input = "P:/New Energy/Churn Moveout Report/Input_file/Full VPPSA Site List V3.xlsx"
+    
     df1 =pd.read_excel(path_input)
     
     df1.to_sql('vpp_churn_tom_from_python', engine, schema=user, if_exists='replace', dtype=types.NVARCHAR(length=255))
@@ -52,7 +52,7 @@ def job_j(user,path_input,path_output):
     t_exportfile_code_0 = time.time()
     #today = datetime.today().date()  
     
-    #path_output = "P:/New Energy/Churn Moveout Report/Full VPPSA Site List V4 outputfile {datetime}.xlsx" .format(datetime=today)
+    
       
     df2.to_excel(path_output)
     t_exportfile_code_1 = time.time()
