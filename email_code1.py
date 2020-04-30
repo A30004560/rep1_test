@@ -1,3 +1,5 @@
+import mailer
+import datetime
 today = datetime.datetime.today().date()
 
 message = mailer.Message()
