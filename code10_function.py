@@ -1,12 +1,14 @@
 import sys
 
+
+import sys
 from sqlalchemy import create_engine, types
 import pandas as pd
-import time as time 
+import time as time
 from datetime import datetime
 import mailer
-
-def job_j(user,path_input,path_output, reciever_emails):
+    
+def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
 
     t_preliminary_0 = time.time()
@@ -74,33 +76,31 @@ def job_j(user,path_input,path_output, reciever_emails):
 
 
     if category_2+category_3+category_4>0:
-
         
-        today = datetime.datetime.today().date()
+        
         
         message = mailer.Message()
         
         message.From = sender_email
         message.To = [reciever_emails]
-        message.Subject = 'VPPSA move and Churn Report on {0}'.format(today)
-        
+        message.Subject = 'VPPSA move and Churn Report on {datetime}'.format(datetime=today)
         message.Body = '''Hi all,
-    #        
-    #        On %s, from %s unique NMIs in the VPP list, %s NMIs are identified as “2_PowerDirect”, %s NMIs are identified as “3_VPPChurn_New_NonAGL_Customer” , %s NMIs are identified as “4_VPPChurn_New_AGL_Customer”, and %s NMIs are identified as “1_Current”. 
-    #        The report is attached to this email and can be find at %s.
-    #        
-    #        Definition of Flags:
-    #        “1_CURRENT”: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI.
-    #        “2_PowerDirect”: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI, but their COMPANY is “power direct”. 
-    #        “3_LeftVPP_New_NonAGL_Customer”: The Business partner ID in the VPPSA list  has left that NMI and the new occupant at that NMI is not an AGL customer.
-    #        “4_LeftVPP_New_AGL_Customer”: The Business partner ID in the VPPSA list  has left that NMI, but the new occupant at that NMI is still an AGL customer.
-    #    
-    #    
-    #        If you have any questions please let me know.
-    #        
-    #        Kind regards,
-    #        
-    #        Javad''' %(time.strftime("%d/%m/%Y"), category_all, category_2, category_3, category_4, category_1, path_output_file)
+            
+            On {today_date}, from {category_all_num} unique NMIs in the VPP list, {category_2_num} NMIs are identified as 2_PowerDirect, {category_3_num} NMIs are identified as 3_VPPChurn_New_NonAGL_Customer , {category_4_num} NMIs are identified as 4_VPPChurn_New_AGL_Customer, and %s NMIs are identified as 1_Current. 
+            The report is attached to this email and can be find at {path_output_file_loc}.
+            
+            Definition of Flags:
+            1_CURRENT: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI.
+            2_PowerDirect: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI, but their COMPANY is power direct. 
+            3_LeftVPP_New_NonAGL_Customer: The Business partner ID in the VPPSA list  has left that NMI and the new occupant at that NMI is not an AGL customer.
+            4_LeftVPP_New_AGL_Customer: The Business partner ID in the VPPSA list  has left that NMI, but the new occupant at that NMI is still an AGL customer.
+        
+       
+            If you have any questions please let me know.
+            
+            Kind regards,
+            
+            Javad'''.format(today_date = today, category_all_num = category_all, category_2_num = category_2, category_3_num = category_3, category_4_num =category_4, category_1 = category_1, path_output_file_loc = path_output_file)
     
         #message.attach(path_output_file)
         
