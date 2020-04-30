@@ -9,7 +9,7 @@ from datetime import datetime
 import mailer
 import getpass
     
-def job_j(user,sender_email, path_input,path_output, reciever_emails):
+def check_email(user,sender_email, path_input,path_output, reciever_emails):
 
 
     t_preliminary_0 = time.time()
@@ -117,4 +117,4 @@ if __name__ == '__main__':
     path_input = sys.argv[2]
     path_output = sys.argv[3]
     reciever_emails = sys.argv[4]
-    job_j(user=user,sender_email=sender_email, path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
+    check_email(user=user,sender_email=sender_email, path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
