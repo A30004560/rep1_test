@@ -1,4 +1,5 @@
-def job_email(user, reciever):
+import sys
+def job_email(user, reciever_emails):
   import mailer
   import datetime
   today = datetime.datetime.today().date()
@@ -6,7 +7,7 @@ def job_email(user, reciever):
   message = mailer.Message()
 
   message.From = '{user}.com.au'.format(user=user)
-  message.To = [reciever]
+  message.To = [reciever_emails]
   message.Subject = 'DR BYOT churned customer report {0}'.format(today)
 
   message.Body = '''Hi Team,
@@ -18,3 +19,8 @@ def job_email(user, reciever):
   sender = mailer.Mailer('aglsmtp05.agl.com.au')
 
   sender.send(message)
+  return()
+if __name__ == '__main__':
+    user = sys.argv[1]
+    reciever_emails = sys.argv[2]
+    job_j(user=user, reciever_emails=reciever_emails)
