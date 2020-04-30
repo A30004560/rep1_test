@@ -1,7 +1,7 @@
 import sys
 
 
-import sys
+
 from sqlalchemy import create_engine, types
 import pandas as pd
 import time as time
