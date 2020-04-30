@@ -2,7 +2,7 @@ import sys
 
 from sqlalchemy import create_engine, types
 import pandas as pd
-import time
+import time as time
 from datetime import datetime
 import getpass
 import mailer
