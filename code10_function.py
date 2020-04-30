@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 import getpass
 
-def job_j(user,path_input,path_output, reciever_emails):
+def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
     
 
@@ -83,7 +83,7 @@ def job_j(user,path_input,path_output, reciever_emails):
         
         message = mailer.Message()
         
-        message.From = '{user}@agl.com.au'.format(user=user)
+        message.From = sender_email
         message.To = [reciever_emails]
         message.Subject = 'VPPSA move and Churn Report on {0}'.format(today)
         
@@ -114,8 +114,8 @@ def job_j(user,path_input,path_output, reciever_emails):
     return()
 if __name__ == '__main__':
     user = getpass.getuser()
-    #user = sys.argv[1]
-    path_input = sys.argv[1]
-    path_output = sys.argv[2]
-    reciever_emails = sys.argv[3]
-    job_j(user=user,path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
+    sender_email = sys.argv[1]
+    path_input = sys.argv[2]
+    path_output = sys.argv[3]
+    reciever_emails = sys.argv[4]
+    job_j(user=user,sender_email=sender_email, path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
