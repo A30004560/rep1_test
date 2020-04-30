@@ -7,6 +7,7 @@ import pandas as pd
 import time as time
 from datetime import datetime
 import mailer
+import getpass
     
 def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
