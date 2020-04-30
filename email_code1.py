@@ -4,7 +4,7 @@ today = datetime.datetime.today().date()
 
 message = mailer.Message()
 
-message.From = 'javad.jazaeri@agl.com.au'
+message.From = 'jjazaeri@agl.com.au'
 message.To = ['javad.jazaeri@gmail.com, jjazaeri@agl.com.au']
 message.Subject = 'DR BYOT churned customer report {0}'.format(today)
 
