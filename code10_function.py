@@ -1,5 +1,6 @@
+import sys
 
-def job_j(user,path_input,path_output):
+def job_j(user,path_input,path_output, reciever_emails):
     from sqlalchemy import create_engine, types
     import pandas as pd
     import time
@@ -7,7 +8,6 @@ def job_j(user,path_input,path_output):
 
     t_preliminary_0 = time.time()
     # Set user.
-  
     # Create engine.
     engine = create_engine('hana://{user}@hananode1:30015'.format(user=user))
     
@@ -50,11 +50,11 @@ def job_j(user,path_input,path_output):
     t_sql_code_1 = time.time()
     
     t_exportfile_code_0 = time.time()
-    #today = datetime.today().date()  
+    today = datetime.today().date()   
     
-    
-      
-    df2.to_excel(path_output)
+    path_output_file = path_output + "/Full VPPSA Site List V4 outputfile {datetime}.xlsx" .format(datetime=today)    
+          
+    df2.to_excel(path_output_file)
     t_exportfile_code_1 = time.time()
     
     category_all= df2['nmi'].nunique()
@@ -67,4 +67,50 @@ def job_j(user,path_input,path_output):
     f= open("P:/New Energy/Churn Moveout Report/LOG_RUN.txt", "a+")
     f.write("%s, %s, %s, %s, %s\n"%(time.strftime("%x, %X"), len(df2), t_preliminary_1-t_preliminary_0,t_sql_code_1-t_sql_code_0,t_exportfile_code_1-t_exportfile_code_0))
     f.close()
-    return
+    
+
+
+    if category_2+category_3+category_4>0:
+        import mailer
+        import datetime
+        import time
+        
+        today = datetime.datetime.today().date()
+        
+        message = mailer.Message()
+        
+        message.From = '{user}@agl.com.au'.format(user=user)
+        message.To = [reciever_emails]
+        message.Subject = 'VPPSA move and Churn Report on {0}'.format(today)
+        
+        message.Body = '''Hi all,
+    #        
+    #        On %s, from %s unique NMIs in the VPP list, %s NMIs are identified as “2_PowerDirect”, %s NMIs are identified as “3_VPPChurn_New_NonAGL_Customer” , %s NMIs are identified as “4_VPPChurn_New_AGL_Customer”, and %s NMIs are identified as “1_Current”. 
+    #        The report is attached to this email and can be find at %s.
+    #        
+    #        Definition of Flags:
+    #        “1_CURRENT”: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI.
+    #        “2_PowerDirect”: The Business partner ID in the VPPSA list is the same as the current active Business partner ID at that NMI, but their COMPANY is “power direct”. 
+    #        “3_LeftVPP_New_NonAGL_Customer”: The Business partner ID in the VPPSA list  has left that NMI and the new occupant at that NMI is not an AGL customer.
+    #        “4_LeftVPP_New_AGL_Customer”: The Business partner ID in the VPPSA list  has left that NMI, but the new occupant at that NMI is still an AGL customer.
+    #    
+    #    
+    #        If you have any questions please let me know.
+    #        
+    #        Kind regards,
+    #        
+    #        Javad''' %(time.strftime("%d/%m/%Y"), category_all, category_2, category_3, category_4, category_1, path_output_file)
+    
+        message.attach(path_output_file)
+        
+        sender = mailer.Mailer('aglsmtp05.agl.com.au')
+        
+        sender.send(message)
+    
+    return()
+if __name__ == '__main__':
+    user = sys.argv[1]
+    path_input = sys.argv[2]
+    path_output = sys.argv[3]
+    reciever_emails = sys.argv[4]
+    job_j(user=user,path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
