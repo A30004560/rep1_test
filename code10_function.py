@@ -2,14 +2,12 @@ import sys
 
 from sqlalchemy import create_engine, types
 import pandas as pd
-import time as time
+import time as time 
 from datetime import datetime
-import getpass
 import mailer
 
-def job_j(user,sender_email, path_input,path_output, reciever_emails):
+def job_j(user,path_input,path_output, reciever_emails):
 
-    
 
     t_preliminary_0 = time.time()
     # Set user.
@@ -76,9 +74,9 @@ def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
 
     if category_2+category_3+category_4>0:
-        #import mailer
-        #import datetime
-        #import time
+        import mailer
+        import datetime
+        import time
         
         today = datetime.datetime.today().date()
         
@@ -113,6 +111,7 @@ def job_j(user,sender_email, path_input,path_output, reciever_emails):
         sender.send(message)
     
     return()
+
 if __name__ == '__main__':
     user = getpass.getuser()
     sender_email = sys.argv[1]
