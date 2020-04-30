@@ -101,7 +101,7 @@ def job_j(user,path_input,path_output, reciever_emails):
     #        
     #        Javad''' %(time.strftime("%d/%m/%Y"), category_all, category_2, category_3, category_4, category_1, path_output_file)
     
-        message.attach(path_output_file)
+        #message.attach(path_output_file)
         
         sender = mailer.Mailer('aglsmtp05.agl.com.au')
         
