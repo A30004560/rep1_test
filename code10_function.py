@@ -5,6 +5,7 @@ import pandas as pd
 import time
 from datetime import datetime
 import getpass
+import mailer
 
 def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
@@ -75,9 +76,9 @@ def job_j(user,sender_email, path_input,path_output, reciever_emails):
 
 
     if category_2+category_3+category_4>0:
-        import mailer
-        import datetime
-        import time
+        #import mailer
+        #import datetime
+        #import time
         
         today = datetime.datetime.today().date()
         
