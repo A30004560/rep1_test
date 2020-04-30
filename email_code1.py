@@ -23,4 +23,4 @@ def job_email(user, reciever_emails):
 if __name__ == '__main__':
     user = sys.argv[1]
     reciever_emails = sys.argv[2]
-    job_j(user=user, reciever_emails=reciever_emails)
+    job_email(user=user, reciever_emails=reciever_emails)
