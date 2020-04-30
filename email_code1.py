@@ -6,7 +6,7 @@ def job_email(user, reciever_emails):
 
   message = mailer.Message()
 
-  message.From = '{user}.com.au'.format(user=user)
+  message.From = '{user}@agl.com.au'.format(user=user)
   message.To = [reciever_emails]
   message.Subject = 'DR BYOT churned customer report {0}'.format(today)
 
