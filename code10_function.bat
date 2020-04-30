@@ -4,3 +4,4 @@ call pushd "\\glawi222\data$\Data\Common\New Energy\Commercial Development\Data 
 call activate myenv_test1
 call python -m code10_function "jjazaeri@agl.com.au" "P:/New Energy/Churn Moveout Report/Input_file/Full VPPSA Site List V3.xlsx" "P:/New Energy/Churn Moveout Report/Output_file" "javad.jazaeri@gmail.com"
 call popd
+pause
