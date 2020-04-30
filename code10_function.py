@@ -74,9 +74,7 @@ def job_j(user,path_input,path_output, reciever_emails):
 
 
     if category_2+category_3+category_4>0:
-        import mailer
-        import datetime
-        import time
+
         
         today = datetime.datetime.today().date()
         
