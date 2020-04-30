@@ -1,10 +1,14 @@
 import sys
 
+from sqlalchemy import create_engine, types
+import pandas as pd
+import time
+from datetime import datetime
+import getpass
+
 def job_j(user,path_input,path_output, reciever_emails):
-    from sqlalchemy import create_engine, types
-    import pandas as pd
-    import time
-    from datetime import datetime
+
+    
 
     t_preliminary_0 = time.time()
     # Set user.
@@ -109,8 +113,9 @@ def job_j(user,path_input,path_output, reciever_emails):
     
     return()
 if __name__ == '__main__':
-    user = sys.argv[1]
-    path_input = sys.argv[2]
-    path_output = sys.argv[3]
-    reciever_emails = sys.argv[4]
+    user = getpass.getuser()
+    #user = sys.argv[1]
+    path_input = sys.argv[1]
+    path_output = sys.argv[2]
+    reciever_emails = sys.argv[3]
     job_j(user=user,path_input=path_input,path_output=path_output, reciever_emails=reciever_emails)
