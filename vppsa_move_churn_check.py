@@ -103,7 +103,7 @@ def check_email(user,sender_email, path_input,path_output, reciever_emails):
             
             Javad'''.format(today_date = today, category_all_num = category_all, category_2_num = category_2, category_3_num = category_3, category_4_num =category_4, category_1 = category_1, path_output_file_loc = path_output_file)
     
-        #message.attach(path_output_file)
+        message.attach(path_output_file)
         
         sender = mailer.Mailer('aglsmtp05.agl.com.au')
         
