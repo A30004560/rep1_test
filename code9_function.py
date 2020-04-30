@@ -115,4 +115,4 @@ path_output = "P:/New Energy/Churn Moveout Report/Output_file"
 reciever_emails = 'javad.jazaeri@gmail.com'
 
 
-job_j(user,path_input,path_output)
+job_j(user,path_input,path_output,reciever_emails)
